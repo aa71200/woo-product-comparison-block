@@ -1,21 +1,26 @@
 .wp-block-codexawp-product-comparison {
-	--compare-ink: #172746;
-	--compare-line: #dce4f2;
-	--compare-accent: #edf3ff;
+	--compare-ink: #233c38;
+	--compare-line: #d5e3dd;
+	--compare-accent: #e7f2ec;
 	color: var(--compare-ink);
 }
 .codexawp-comparison-scroll { overflow-x: auto; border: 1px solid var(--compare-line); border-radius: 13px; background: #fff; }
 .codexawp-comparison-scroll:focus-visible { outline: 3px solid #3959ba; outline-offset: 3px; }
 .codexawp-comparison-scroll table { border-collapse: collapse; inline-size: 100%; min-inline-size: 420px; margin: 0; background: #fff; font-size: .88em; line-height: 1.5; }
-.codexawp-comparison-scroll caption { text-align: start; padding: 17px 20px; background: #162749; color: #fff; }
+.codexawp-comparison-scroll caption { text-align: start; padding: 17px 20px; background: #214841; color: #fff; }
 .codexawp-comparison-scroll .compare-title { font-weight: 680; font-size: 1.18em; letter-spacing: -.02em; }
 .codexawp-comparison-scroll .compare-count { display: inline-block; margin-inline-start: .65em; padding: 2px 8px; font-size: .76em; border: 1px solid #ffffff45; border-radius: 20px; color: #dce7ff; white-space: nowrap; }
 .codexawp-comparison-scroll th, .codexawp-comparison-scroll td { text-align: start; padding: 14px 17px; border-block-start: 1px solid var(--compare-line); vertical-align: middle; }
 .codexawp-comparison-scroll thead { background: var(--compare-accent); }
 .codexawp-comparison-scroll thead th { font-size: 1.04em; font-weight: 670; }
 .codexawp-comparison-scroll a { color: #2346a7; text-decoration-thickness: 1px; text-underline-offset: 3px; }
-.codexawp-comparison-scroll tbody th { font-weight: 620; color: #405272; }
-.codexawp-comparison-scroll tbody tr:nth-child(even) { background: #f8faff; }
+.codexawp-comparison-scroll tbody th { position: sticky; inset-inline-start: 0; min-inline-size: 7rem; font-weight: 670; color: #38564d; background: #f1f7f3; }
+.codexawp-comparison-scroll tbody tr:nth-child(even) { background: #f8fbf9; }
 .codexawp-comparison-scroll .compare-stock { background: #edf1f8; color: #394963; padding: 3px 8px; border-radius: 5px; font-size: .8em; white-space: nowrap; font-weight: 640; }
 .codexawp-comparison-scroll .compare-stock-available { background: #e2f1eb; color: #235743; }
 .codexawp-comparison-scroll img.compare-thumbnail { display: block; width: 64px; height: 64px; margin-block-end: 8px; object-fit: cover; border-radius: 8px; }
+@media (max-width: 36rem) {
+	.codexawp-comparison-scroll[data-products="2"] table { min-inline-size: 0; table-layout: fixed; }
+	.codexawp-comparison-scroll[data-products="2"] :is(th, td) { min-inline-size: 0; padding: 10px 8px; overflow-wrap: anywhere; }
+	.codexawp-comparison-scroll[data-products="2"] tr > :first-child { width: 30%; }
+}
