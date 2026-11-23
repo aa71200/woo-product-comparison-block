@@ -2,10 +2,11 @@
 /**
  * Plugin Name: CodexaWP Product Comparison Block
  * Description: A server-rendered comparison of up to three WooCommerce products.
- * Version: 1.0.0
+ * Version: 1.1.0
  * Requires Plugins: woocommerce
  * Requires PHP: 8.2
  * License: GPL-2.0-or-later
+ * Text Domain: woo-product-comparison-block
  */
 declare(strict_types=1);
 
@@ -14,8 +15,9 @@ defined( 'ABSPATH' ) || exit;
 
 add_action( 'init', static function (): void {
 	wp_register_script( 'codexawp-comparison-edit', plugins_url( 'editor.js', __FILE__ ), [
-		'wp-blocks', 'wp-block-editor', 'wp-components', 'wp-element', 'wp-server-side-render',
-	], '1.0.0', true );
+		'wp-api-fetch', 'wp-blocks', 'wp-block-editor', 'wp-components', 'wp-element', 'wp-html-entities', 'wp-i18n', 'wp-server-side-render',
+	], '1.1.0', true );
+	wp_set_script_translations( 'codexawp-comparison-edit', 'woo-product-comparison-block' );
 	wp_register_style( 'codexawp-comparison', plugins_url( 'style.css', __FILE__ ), [], '1.1.0' );
 	register_block_type( __DIR__, [ 'render_callback' => __NAMESPACE__ . '\render' ] );
 } );
@@ -33,14 +35,14 @@ function render( array $attributes ): string {
 		}
 	}
 	if ( count( $products ) < 2 ) {
-		return '<p ' . get_block_wrapper_attributes() . '>Select at least two available products to compare.</p>';
+		return '<p ' . get_block_wrapper_attributes() . '>' . esc_html__( 'Select at least two available products to compare.', 'woo-product-comparison-block' ) . '</p>';
 	}
 	$rows = [
-		'Price' => static fn( $product ): string => wp_kses_post( $product->get_price_html() ) ?: '—',
-		'Availability' => static fn( $product ): string => $product->is_in_stock()
-			? '<span class="compare-stock compare-stock-available">In stock</span>'
-			: '<span class="compare-stock">Out of stock</span>',
-		'Features' => static function ( $product ): string {
+		__( 'Price', 'woo-product-comparison-block' ) => static fn( $product ): string => wp_kses_post( $product->get_price_html() ) ?: '—',
+		__( 'Availability', 'woo-product-comparison-block' ) => static fn( $product ): string => $product->is_in_stock()
+			? '<span class="compare-stock compare-stock-available">' . esc_html__( 'In stock', 'woo-product-comparison-block' ) . '</span>'
+			: '<span class="compare-stock">' . esc_html__( 'Out of stock', 'woo-product-comparison-block' ) . '</span>',
+		__( 'Features', 'woo-product-comparison-block' ) => static function ( $product ): string {
 			$parts = [];
 			foreach ( $product->get_attributes() as $attribute ) {
 				if ( $attribute instanceof \WC_Product_Attribute && $attribute->get_visible() ) {
@@ -57,10 +59,13 @@ function render( array $attributes ): string {
 	ob_start();
 	?>
 	<section <?php echo get_block_wrapper_attributes(); ?> >
-		<div class="codexawp-comparison-scroll" role="region" aria-label="Product comparison" tabindex="0">
-			<table aria-label="Compare products">
-				<caption><span class="compare-title">Compare products</span><span class="compare-count"><?php echo esc_html( sprintf( '%d products', count( $products ) ) ); ?></span></caption>
-				<thead><tr><th scope="col">Feature</th>
+		<div class="codexawp-comparison-scroll" role="region" aria-label="<?php esc_attr_e( 'Product comparison', 'woo-product-comparison-block' ); ?>" tabindex="0">
+			<table aria-label="<?php esc_attr_e( 'Compare products', 'woo-product-comparison-block' ); ?>">
+				<caption><span class="compare-title"><?php esc_html_e( 'Compare products', 'woo-product-comparison-block' ); ?></span><span class="compare-count"><?php
+					/* translators: %d: Number of products in the comparison. */
+					echo esc_html( sprintf( _n( '%d product', '%d products', count( $products ), 'woo-product-comparison-block' ), count( $products ) ) );
+				?></span></caption>
+				<thead><tr><th scope="col"><?php esc_html_e( 'Feature', 'woo-product-comparison-block' ); ?></th>
 				<?php foreach ( $products as $product ) : ?>
 					<th scope="col">
 						<?php if ( $product->get_image_id() ) : ?>

@@ -5,6 +5,7 @@
   "category": "widgets",
   "icon": "table-col-after",
   "description": "Compare the current price, stock and public features of WooCommerce products.",
+  "textdomain": "woo-product-comparison-block",
   "attributes": { "productIds": { "type": "array", "items": { "type": "integer" }, "default": [] } },
   "supports": { "html": false },
   "editorScript": "codexawp-comparison-edit",
