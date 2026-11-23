@@ -18,7 +18,7 @@ add_action( 'init', static function (): void {
 		'wp-api-fetch', 'wp-blocks', 'wp-block-editor', 'wp-components', 'wp-element', 'wp-html-entities', 'wp-i18n', 'wp-server-side-render',
 	], '1.1.0', true );
 	wp_set_script_translations( 'codexawp-comparison-edit', 'woo-product-comparison-block' );
-	wp_register_style( 'codexawp-comparison', plugins_url( 'style.css', __FILE__ ), [], '1.1.0' );
+	wp_register_style( 'codexawp-comparison', plugins_url( 'style.css', __FILE__ ), [], '1.2.0' );
 	register_block_type( __DIR__, [ 'render_callback' => __NAMESPACE__ . '\render' ] );
 } );
 
@@ -26,7 +26,17 @@ function render( array $attributes ): string {
 	if ( ! function_exists( 'wc_get_product' ) ) {
 		return '';
 	}
-	$ids = array_slice( array_unique( array_filter( array_map( 'absint', $attributes['productIds'] ?? [] ) ) ), 0, 3 );
+	$selection = $attributes['productIds'] ?? [];
+	$ids = [];
+	foreach ( is_array( $selection ) ? $selection : [] as $candidate ) {
+		if ( is_int( $candidate ) || ( is_string( $candidate ) && ctype_digit( $candidate ) ) ) {
+			$id = (int) $candidate;
+			if ( $id > 0 ) {
+				$ids[ $id ] = $id;
+			}
+		}
+	}
+	$ids = array_slice( $ids, 0, 3 );
 	$products = [];
 	foreach ( $ids as $id ) {
 		$product = wc_get_product( $id );
@@ -59,7 +69,7 @@ function render( array $attributes ): string {
 	ob_start();
 	?>
 	<section <?php echo get_block_wrapper_attributes(); ?> >
-		<div class="codexawp-comparison-scroll" role="region" aria-label="<?php esc_attr_e( 'Product comparison', 'woo-product-comparison-block' ); ?>" tabindex="0">
+		<div class="codexawp-comparison-scroll" data-products="<?php echo esc_attr( count( $products ) ); ?>" role="region" aria-label="<?php esc_attr_e( 'Product comparison', 'woo-product-comparison-block' ); ?>" tabindex="0">
 			<table aria-label="<?php esc_attr_e( 'Compare products', 'woo-product-comparison-block' ); ?>">
 				<caption><span class="compare-title"><?php esc_html_e( 'Compare products', 'woo-product-comparison-block' ); ?></span><span class="compare-count"><?php
 					/* translators: %d: Number of products in the comparison. */

@@ -27,6 +27,8 @@ $create = static function ( string $price ): int {
 $a = $create( '21.34' );
 $b = $create( '56.78' );
 $attrs = [ 'productIds' => [ $a, $b ] ];
+$malformed = \CodexaWP\Comparison\render( array( 'productIds' => 'invalid' ) );
+check( str_contains( $malformed, 'Select at least two' ), 'Malformed saved product selection is handled safely' );
 $html = \CodexaWP\Comparison\render( $attrs );
 check( str_contains( $html, '21.34' ) && str_contains( $html, '56.78' ) && str_contains( $html, 'scope="row"' ), 'Renders price and semantic table headers' );
 $product = wc_get_product( $b );
