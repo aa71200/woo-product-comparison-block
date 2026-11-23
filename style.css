@@ -1,11 +1,21 @@
 .wp-block-codexawp-product-comparison {
-	--compare-border: #b9c9bf;
-	--compare-accent: #e6f0e9;
-	color: #17352a;
+	--compare-ink: #172746;
+	--compare-line: #dce4f2;
+	--compare-accent: #edf3ff;
+	color: var(--compare-ink);
 }
-.codexawp-comparison-scroll { overflow-x: auto; border: 1px solid var(--compare-border); border-radius: .65rem; }
-.codexawp-comparison-scroll:focus-visible { outline: 3px solid #426a56; outline-offset: 2px; }
-.codexawp-comparison-scroll table { border-collapse: collapse; width: 100%; min-inline-size: 22rem; margin: 0; }
-.codexawp-comparison-scroll caption { text-align: start; font-weight: 650; padding: .9rem; background: var(--compare-accent); }
-.codexawp-comparison-scroll th, .codexawp-comparison-scroll td { text-align: start; padding: .65rem .9rem; border-block-start: 1px solid var(--compare-border); }
-.codexawp-comparison-scroll thead { background: #f1f5f0; }
+.codexawp-comparison-scroll { overflow-x: auto; border: 1px solid var(--compare-line); border-radius: 13px; background: #fff; }
+.codexawp-comparison-scroll:focus-visible { outline: 3px solid #3959ba; outline-offset: 3px; }
+.codexawp-comparison-scroll table { border-collapse: collapse; inline-size: 100%; min-inline-size: 420px; margin: 0; background: #fff; font-size: .88em; line-height: 1.5; }
+.codexawp-comparison-scroll caption { text-align: start; padding: 17px 20px; background: #162749; color: #fff; }
+.codexawp-comparison-scroll .compare-title { font-weight: 680; font-size: 1.18em; letter-spacing: -.02em; }
+.codexawp-comparison-scroll .compare-count { display: inline-block; margin-inline-start: .65em; padding: 2px 8px; font-size: .76em; border: 1px solid #ffffff45; border-radius: 20px; color: #dce7ff; white-space: nowrap; }
+.codexawp-comparison-scroll th, .codexawp-comparison-scroll td { text-align: start; padding: 14px 17px; border-block-start: 1px solid var(--compare-line); vertical-align: middle; }
+.codexawp-comparison-scroll thead { background: var(--compare-accent); }
+.codexawp-comparison-scroll thead th { font-size: 1.04em; font-weight: 670; }
+.codexawp-comparison-scroll a { color: #2346a7; text-decoration-thickness: 1px; text-underline-offset: 3px; }
+.codexawp-comparison-scroll tbody th { font-weight: 620; color: #405272; }
+.codexawp-comparison-scroll tbody tr:nth-child(even) { background: #f8faff; }
+.codexawp-comparison-scroll .compare-stock { background: #edf1f8; color: #394963; padding: 3px 8px; border-radius: 5px; font-size: .8em; white-space: nowrap; font-weight: 640; }
+.codexawp-comparison-scroll .compare-stock-available { background: #e2f1eb; color: #235743; }
+.codexawp-comparison-scroll img.compare-thumbnail { display: block; width: 64px; height: 64px; margin-block-end: 8px; object-fit: cover; border-radius: 8px; }
