@@ -1,6 +1,6 @@
 # Product Comparison Block
 
-An original CodexaWP Gutenberg block for comparing up to three published, visible WooCommerce products. PHP renders current price, availability and public attributes every time the page is requested.
+A comparison page should show current prices and stock after merchants edit their catalogue. This CodexaWP Gutenberg block renders up to three visible WooCommerce products from live catalogue data on each request.
 
 ## Storefront preview
 
