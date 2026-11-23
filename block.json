@@ -1,0 +1,12 @@
+{
+  "apiVersion": 3,
+  "name": "codexawp/product-comparison",
+  "title": "Product Comparison",
+  "category": "widgets",
+  "icon": "table-col-after",
+  "description": "Compare the current price, stock and public features of WooCommerce products.",
+  "attributes": { "productIds": { "type": "array", "items": { "type": "integer" }, "default": [] } },
+  "supports": { "html": false },
+  "editorScript": "codexawp-comparison-edit",
+  "style": "codexawp-comparison"
+}

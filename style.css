@@ -1,0 +1,11 @@
+.wp-block-codexawp-product-comparison {
+	--compare-border: #b9c9bf;
+	--compare-accent: #e6f0e9;
+	color: #17352a;
+}
+.codexawp-comparison-scroll { overflow-x: auto; border: 1px solid var(--compare-border); border-radius: .65rem; }
+.codexawp-comparison-scroll:focus-visible { outline: 3px solid #426a56; outline-offset: 2px; }
+.codexawp-comparison-scroll table { border-collapse: collapse; width: 100%; min-inline-size: 22rem; margin: 0; }
+.codexawp-comparison-scroll caption { text-align: start; font-weight: 650; padding: .9rem; background: var(--compare-accent); }
+.codexawp-comparison-scroll th, .codexawp-comparison-scroll td { text-align: start; padding: .65rem .9rem; border-block-start: 1px solid var(--compare-border); }
+.codexawp-comparison-scroll thead { background: #f1f5f0; }
