@@ -2,7 +2,13 @@
 
 An original CodexaWP Gutenberg block for comparing up to three published, visible WooCommerce products. PHP renders current price, availability and public attributes every time the page is requested.
 
-![Storefront comparison of two sample products](docs/comparison.png)
+## Storefront preview
+
+<p align="center">
+  <a href="docs/comparison.png"><img src="docs/comparison.png" width="644" alt="Two WooCommerce products compared by price, availability and features"></a>
+  <br>
+  <em>Storefront block · current price, availability and features side by side</em>
+</p>
 
 ## Try it
 
