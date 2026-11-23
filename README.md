@@ -1,5 +1,7 @@
 # Product Comparison Block
 
+[![WordPress and WooCommerce integration checks](https://github.com/aa71200/woo-product-comparison-block/actions/workflows/checks.yml/badge.svg?branch=main)](https://github.com/aa71200/woo-product-comparison-block/actions/workflows/checks.yml)
+
 A comparison page should show current prices and stock after merchants edit their catalogue. This CodexaWP Gutenberg block renders up to three visible WooCommerce products from live catalogue data on each request.
 
 ## Storefront preview
